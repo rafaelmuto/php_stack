@@ -1,1 +1,1 @@
-# symfony_docker
+# Basic PHP Stack 
