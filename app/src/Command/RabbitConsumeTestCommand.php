@@ -34,8 +34,8 @@ class RabbitConsumeTestCommand extends Command
 
         $channel->queue_declare($queue_name, false, false, false, false);
 
-        $channel->basic_consume($queue_name, '', false, true, false, false, function (AMQPMessage $msg) {
-            dump($msg->getBody());
+        $channel->basic_consume($queue_name, '', false, true, false, false, function (AMQPMessage $msg) use ($io) {
+            $io->info($msg->getBody());
         });
 
         while ($channel->is_open()) {

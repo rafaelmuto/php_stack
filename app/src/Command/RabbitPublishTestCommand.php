@@ -39,7 +39,7 @@ class RabbitPublishTestCommand extends Command
 
         $channel->queue_declare($queue_name, false, false, false, false);
 
-        $io->writeln('sengin ' . $arg1);
+        $io->writeln('sendin ' . $arg1);
 
         $msg = new AMQPMessage($arg1);
         $channel->basic_publish($msg, '', $queue_name);
