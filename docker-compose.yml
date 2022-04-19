@@ -11,7 +11,7 @@ services:
       MYSQL_USER: symfony
       MYSQL_PASSWORD: symfony
     ports:
-      - '4406:3306'
+      - '3306:3306'
     volumes:
       - ./mysql:/var/lib/mysql
 
@@ -20,7 +20,7 @@ services:
     build:
       context: ./php
     ports:
-      - '8080:9000'
+      - '9000:9000'
     volumes:
       - ./app:/var/www/symfony
     depends_on:
