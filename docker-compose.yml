@@ -15,8 +15,8 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
 
-  app:
-    container_name: php
+  php:
+    container_name: app
     build:
       context: ./php
     ports:
