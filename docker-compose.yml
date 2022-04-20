@@ -15,7 +15,7 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
 
-  php:
+  app:
     container_name: php
     build:
       context: ./php
