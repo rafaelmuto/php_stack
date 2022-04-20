@@ -4,23 +4,24 @@ services:
   database:
     container_name: database
     image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: symfony_docker
-      MYSQL_USER: symfony
-      MYSQL_PASSWORD: symfony
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - '3306:3306'
     volumes:
       - ./mysql:/var/lib/mysql
 
   php:
-    container_name: php
+    container_name: app
     build:
       context: ./php
     ports:
       - '9000:9000'
+    environment:
+      - DATABASE_URL=mysql://root:${DB_ROOT_PASSWORD}@database:3306/${DB_NAME}?serverVersion=8.0
     volumes:
       - ./app:/var/www/symfony
     depends_on:
